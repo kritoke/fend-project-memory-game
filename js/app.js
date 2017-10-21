@@ -76,7 +76,6 @@ placeCards(shuffledDeck);
 
 $placedDeck.on('click', 'li', function() {
     let $currentCard = $(this);
-    let $cardClass = $currentCard.children(1).attr('class').split(' ').pop();
     flipCard($currentCard);
 });
 
