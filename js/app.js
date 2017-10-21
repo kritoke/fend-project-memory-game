@@ -41,11 +41,20 @@ var placeCards = function(cards) {
     $placedDeck.html(placedCards);
 };
 
+// flip card over for a short period of time
+var flipCard = function(card) {
+    card.addClass('open show');
+    setTimeout(function() {
+        card.removeClass('open show');
+    }, 1000);
+};
+
 placeCards(shuffledDeck);
 
 $placedDeck.on('click', 'li', function() {
     let $currentCard = $(this);
     let $cardClass = $currentCard.children(1).attr('class').split(' ').pop();
+    flipCard($currentCard);
 });
 
 /*
