@@ -57,20 +57,26 @@ var flipCard = function(card) {
 };
 
 var matchCards = function(prevCard, currCard) {
-    if (prevCard.children().attr('class') === currCard.children().attr('class')) {
+    if ((typeof prevCard != 'undefined') && (typeof prevCard != 'undefined')) {
+        if (prevCard.children().attr('class') === currCard.children().attr('class')) {
+            currCard.addClass('match');
+            prevCard.addClass('match');
+            unshowCards(prevCard, currCard);
+        } else {
+            unshowCards(prevCard, currCard);
+        }
+    } else { // fix bug related to clicking too many cards in a row (over 2) and it still showing up
         currCard.removeClass('open show');
-        currCard.addClass('match');
-        prevCard.removeClass('open show');
-        prevCard.addClass('match');
-        openCards.pop();
-        openCards.pop();
-    } else {
-        currCard.removeClass('open show');
-        prevCard.removeClass('open show');
-        openCards.pop();
-        openCards.pop();
     }
-}
+};
+
+// remove cards from openCards and remove the cards from being visible
+var unshowCards = function(prevCard, currCard) {
+    prevCard.removeClass('open show');
+    currCard.removeClass('open show');
+    openCards.pop();
+    openCards.pop();
+};
 
 placeCards(shuffledDeck);
 
