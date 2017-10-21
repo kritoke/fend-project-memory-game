@@ -4,7 +4,9 @@
 const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 const shuffledDeck = shuffle(sortedDeck);
 const $placedDeck = $('.deck');
-var openCards = [];
+const $moveClass = $('.moves');
+let openCards = [];
+let moveCounter = 0;
 
 /*
  * Display the cards on the page
@@ -29,7 +31,6 @@ function shuffle(array) {
     return array;
 }
 
-
 // put cards on the "table"
 var placeCards = function(cards) {
     let placedCards = '';
@@ -44,6 +45,7 @@ var placeCards = function(cards) {
 
 // flip card over for a short period of time
 var flipCard = function(card) {
+    incrementMove();
     if (!card.hasClass('card match')) {
         card.addClass('open show');
         if (openCards.length === 0) {
@@ -56,6 +58,7 @@ var flipCard = function(card) {
     }
 };
 
+// match cards if they are the same
 var matchCards = function(prevCard, currCard) {
     if ((typeof prevCard != 'undefined') && (typeof prevCard != 'undefined')) {
         if (prevCard.children().attr('class') === currCard.children().attr('class')) {
@@ -76,6 +79,12 @@ var unshowCards = function(prevCard, currCard) {
     currCard.removeClass('open show');
     openCards.pop();
     openCards.pop();
+};
+
+// increment move counter and change display to reflect it.
+var incrementMove = function() {
+    ++moveCounter;
+    $moveClass.text(moveCounter).fadeIn(500);
 };
 
 placeCards(shuffledDeck);
