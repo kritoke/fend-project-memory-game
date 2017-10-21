@@ -4,6 +4,7 @@
 const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 const shuffledDeck = shuffle(sortedDeck);
 const $placedDeck = $('.deck');
+var openCards = [];
 
 /*
  * Display the cards on the page
@@ -43,11 +44,33 @@ var placeCards = function(cards) {
 
 // flip card over for a short period of time
 var flipCard = function(card) {
-    card.addClass('open show');
-    setTimeout(function() {
-        card.removeClass('open show');
-    }, 1000);
+    if (!card.hasClass('card match')) {
+        card.addClass('open show');
+        if (openCards.length === 0) {
+            openCards.push(card);
+        } else {
+            setTimeout(function() {
+                matchCards(openCards[0], card);
+            }, 800);
+        }
+    }
 };
+
+var matchCards = function(prevCard, currCard) {
+    if (prevCard.children().attr('class') === currCard.children().attr('class')) {
+        currCard.removeClass('open show');
+        currCard.addClass('match');
+        prevCard.removeClass('open show');
+        prevCard.addClass('match');
+        openCards.pop();
+        openCards.pop();
+    } else {
+        currCard.removeClass('open show');
+        prevCard.removeClass('open show');
+        openCards.pop();
+        openCards.pop();
+    }
+}
 
 placeCards(shuffledDeck);
 
