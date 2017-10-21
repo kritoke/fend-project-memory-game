@@ -7,6 +7,7 @@ const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 let openCards = [];
 let moveCounter = 0;
+let matches = 0;
 
 /*
  * Display the cards on the page
@@ -65,6 +66,10 @@ var matchCards = function(prevCard, currCard) {
             currCard.addClass('match');
             prevCard.addClass('match');
             unshowCards(prevCard, currCard);
+
+            matches++;
+            console.log(matches);
+            allMatched();
         } else {
             unshowCards(prevCard, currCard);
         }
@@ -83,8 +88,14 @@ var unshowCards = function(prevCard, currCard) {
 
 // increment move counter and change display to reflect it.
 var incrementMove = function() {
-    ++moveCounter;
-    $moveClass.text(moveCounter).fadeIn(500);
+    moveCounter++;
+    $moveClass.text(moveCounter);
+};
+
+var allMatched = function() {
+    if (matches === 8) {
+        $('.congrats').removeClass('hidden');
+    }
 };
 
 placeCards(shuffledDeck);
