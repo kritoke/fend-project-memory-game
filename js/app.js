@@ -44,7 +44,7 @@ var placeCards = function(cards) {
     $placedDeck.html(placedCards);
 };
 
-// flip card over for a short period of time
+// flip card over for a short period of time, run match function
 var flipCard = function(card) {
     incrementMove();
     if (!card.hasClass('card match')) {
@@ -66,9 +66,7 @@ var matchCards = function(prevCard, currCard) {
             currCard.addClass('match');
             prevCard.addClass('match');
             unshowCards(prevCard, currCard);
-
             matches++;
-            console.log(matches);
             allMatched();
         } else {
             unshowCards(prevCard, currCard);
