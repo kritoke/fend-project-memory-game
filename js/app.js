@@ -73,11 +73,11 @@ var matchCards = function(prevCard, currCard) {
         } else {
             unshowCards(prevCard, currCard);
         }
+        moveCounter++;
+        updateMoveDisplay();
     } else { // fix bug related to clicking over 2 cards in a row and it still showing up
         currCard.removeClass('open show');
     }
-    moveCounter++;
-    updateMoveDisplay();
 };
 
 // remove cards from openCards and remove the cards from being visible
