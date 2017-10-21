@@ -123,17 +123,21 @@ var displayStars = function() {
     }
 };
 
-displayStars();
-placeCards(shuffledDeck);
+var startGame = function() {
+    displayStars();
+    placeCards(shuffledDeck);
 
-$placedDeck.on('click', 'li', function() {
-    let $currentCard = $(this);
-    flipCard($currentCard);
-});
+    $placedDeck.on('click', 'li', function() {
+        let $currentCard = $(this);
+        flipCard($currentCard);
+    });
 
-$restartClass.on('click', 'i', function() {
-    reset();
-});
+    $restartClass.on('click', 'i', function() {
+        reset();
+    });
+}
+
+startGame();
 
 /*
  * set up the event listener for a card. If a card is clicked:
