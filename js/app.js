@@ -114,7 +114,7 @@ var reset = function() {
 // sets the stars on the screen based on move counts
 var displayStars = function() {
     let starHTML = '<li><i class="fa fa-star"></i></li>'
-    if (moveCounter === 15) {
+    if (moveCounter >= 15) {
         $starsClass.html(starHTML);
     } else if (moveCounter === 9) {
         $starsClass.html(starHTML.repeat(2));
