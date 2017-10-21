@@ -41,6 +41,12 @@ var placeCards = function(cards) {
     $placedDeck.html(placedCards);
 };
 
+placeCards(shuffledDeck);
+
+$placedDeck.on('click', 'li', function() {
+    let $currentCard = $(this);
+    let $cardClass = $currentCard.children(1).attr('class').split(' ').pop();
+});
 
 /*
  * set up the event listener for a card. If a card is clicked:
