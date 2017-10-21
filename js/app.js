@@ -28,6 +28,19 @@ function shuffle(array) {
 }
 
 
+// put cards on the "table"
+var placeCards = function(cards) {
+    let placedCards = '';
+
+    for (let index = 0; index < cards.length; index++) {
+        placedCards += `<li class="card">
+        <i class="fa fa-${cards[index]}"></i>
+    </li>`
+    }
+    $placedDeck.html(placedCards);
+};
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
