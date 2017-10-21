@@ -5,6 +5,7 @@ const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anc
 const shuffledDeck = shuffle(sortedDeck);
 const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
+const $restartClass = $('.restart');
 let openCards = [];
 let moveCounter = 0;
 let matches = 0;
@@ -71,7 +72,7 @@ var matchCards = function(prevCard, currCard) {
         } else {
             unshowCards(prevCard, currCard);
         }
-    } else { // fix bug related to clicking too many cards in a row (over 2) and it still showing up
+    } else { // fix bug related to clicking over 2 cards in a row and it still showing up
         currCard.removeClass('open show');
     }
 };
@@ -90,10 +91,17 @@ var incrementMove = function() {
     $moveClass.text(moveCounter);
 };
 
+// see if all cards are matched
 var allMatched = function() {
     if (matches === 8) {
         $('.congrats').removeClass('hidden');
     }
+};
+
+// resets the game and puts all the cards back down
+var reset = function() {
+    const shuffledDeck = shuffle(sortedDeck);
+    placeCards(shuffledDeck);
 };
 
 placeCards(shuffledDeck);
@@ -101,6 +109,10 @@ placeCards(shuffledDeck);
 $placedDeck.on('click', 'li', function() {
     let $currentCard = $(this);
     flipCard($currentCard);
+});
+
+$restartClass.on('click', 'i', function() {
+    reset();
 });
 
 /*
