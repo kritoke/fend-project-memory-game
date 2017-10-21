@@ -5,6 +5,7 @@ const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anc
 const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 const $restartClass = $('.restart');
+const $starsClass = $('.stars');
 let shuffledDeck = shuffle(sortedDeck);
 let openCards = [];
 let moveCounter = 0;
@@ -47,8 +48,7 @@ var placeCards = function(cards) {
 
 // flip card over for a short period of time, run match function
 var flipCard = function(card) {
-    moveCounter++;
-    updateMoveDisplay();
+    displayStars();
     if (!card.hasClass('card match')) {
         card.addClass('open show');
         if (openCards.length === 0) {
@@ -76,6 +76,8 @@ var matchCards = function(prevCard, currCard) {
     } else { // fix bug related to clicking over 2 cards in a row and it still showing up
         currCard.removeClass('open show');
     }
+    moveCounter++;
+    updateMoveDisplay();
 };
 
 // remove cards from openCards and remove the cards from being visible
@@ -106,8 +108,22 @@ var reset = function() {
     moveCounter = 0;
     matches = 0;
     updateMoveDisplay();
+    displayStars();
 };
 
+// sets the stars on the screen based on move counts
+var displayStars = function() {
+    let starHTML = '<li><i class="fa fa-star"></i></li>'
+    if (moveCounter === 15) {
+        $starsClass.html(starHTML);
+    } else if (moveCounter === 9) {
+        $starsClass.html(starHTML.repeat(2));
+    } else if (moveCounter <= 8) {
+        $starsClass.html(starHTML.repeat(3));
+    }
+};
+
+displayStars();
 placeCards(shuffledDeck);
 
 $placedDeck.on('click', 'li', function() {
