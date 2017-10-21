@@ -2,10 +2,14 @@
  * Create a list that holds all of your cards
  */
 const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
+
+// jQuery variables for class look ups
 const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 const $restartClass = $('.restart');
 const $starsClass = $('.stars');
+
+// variables that need to be reset at each game
 let shuffledDeck = shuffle(sortedDeck);
 let openCards = [];
 let moveCounter = 0;
@@ -113,7 +117,7 @@ var reset = function() {
 
 // sets the stars on the screen based on move counts
 var displayStars = function() {
-    let starHTML = '<li><i class="fa fa-star"></i></li>'
+    let starHTML = '<li><i class="fa fa-star"></i></li>';
     if (moveCounter >= 15) {
         $starsClass.html(starHTML);
     } else if (moveCounter === 9) {
