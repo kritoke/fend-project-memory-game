@@ -102,6 +102,10 @@ var allMatched = function() {
 var reset = function() {
     const shuffledDeck = shuffle(sortedDeck);
     placeCards(shuffledDeck);
+    let openCards = [];
+    let moveCounter = 0;
+    let matches = 0;
+    $moveClass.text(moveCounter);
 };
 
 placeCards(shuffledDeck);
