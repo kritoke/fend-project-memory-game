@@ -47,7 +47,8 @@ var placeCards = function(cards) {
 
 // flip card over for a short period of time, run match function
 var flipCard = function(card) {
-    incrementMove();
+    moveCounter++;
+    updateMoveDisplay();
     if (!card.hasClass('card match')) {
         card.addClass('open show');
         if (openCards.length === 0) {
@@ -85,9 +86,8 @@ var unshowCards = function(prevCard, currCard) {
     openCards.pop();
 };
 
-// increment move counter and change display to reflect it.
-var incrementMove = function() {
-    moveCounter++;
+// change display to update to current move counter amount.
+var updateMoveDisplay = function() {
     $moveClass.text(moveCounter);
 };
 
@@ -105,7 +105,7 @@ var reset = function() {
     openCards = [];
     moveCounter = 0;
     matches = 0;
-    $moveClass.text(moveCounter);
+    updateMoveDisplay();
 };
 
 placeCards(shuffledDeck);
