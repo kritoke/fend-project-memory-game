@@ -3,6 +3,7 @@
  */
 const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
 const shuffledDeck = shuffle(sortedDeck);
+const $placedDeck = $('.deck');
 
 /*
  * Display the cards on the page
