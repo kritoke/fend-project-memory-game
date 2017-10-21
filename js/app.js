@@ -2,10 +2,10 @@
  * Create a list that holds all of your cards
  */
 const sortedDeck = ['diamond', 'diamond', 'paper-plane-o', 'paper-plane-o', 'anchor', 'anchor', 'bolt', 'bolt', 'cube', 'cube', 'leaf', 'leaf', 'bicycle', 'bicycle', 'bomb', 'bomb'];
-const shuffledDeck = shuffle(sortedDeck);
 const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 const $restartClass = $('.restart');
+let shuffledDeck = shuffle(sortedDeck);
 let openCards = [];
 let moveCounter = 0;
 let matches = 0;
@@ -48,7 +48,6 @@ var placeCards = function(cards) {
 // flip card over for a short period of time, run match function
 var flipCard = function(card) {
     incrementMove();
-    console.log(moveCounter);
     if (!card.hasClass('card match')) {
         card.addClass('open show');
         if (openCards.length === 0) {
@@ -89,7 +88,6 @@ var unshowCards = function(prevCard, currCard) {
 // increment move counter and change display to reflect it.
 var incrementMove = function() {
     moveCounter++;
-    console.log(moveCounter);
     $moveClass.text(moveCounter);
 };
 
@@ -102,7 +100,7 @@ var allMatched = function() {
 
 // resets the game and puts all the cards back down
 var reset = function() {
-    const shuffledDeck = shuffle(sortedDeck);
+    shuffledDeck = shuffle(sortedDeck);
     placeCards(shuffledDeck);
     openCards = [];
     moveCounter = 0;
