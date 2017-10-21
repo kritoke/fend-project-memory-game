@@ -19,7 +19,7 @@ let matches = 0;
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+var shuffle = function(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
 
@@ -32,7 +32,7 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
 
 // put cards on the "table"
 var placeCards = function(cards) {
@@ -135,7 +135,7 @@ var startGame = function() {
     $restartClass.on('click', 'i', function() {
         reset();
     });
-}
+};
 
 startGame();
 
