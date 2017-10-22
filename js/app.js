@@ -68,46 +68,36 @@ var matchCards = function(prevCard, currCard) {
         if (prevCard.children().attr('class') === currCard.children().attr('class')) {
             currCard.addClass('match');
             prevCard.addClass('match');
-            shakeCardsUpDown(prevCard, currCard);
+            shakeCardUpDown(prevCard);
+            shakeCardUpDown(currCard);
             matches++;
             allMatched();
         } else {
-            shakeCardsSideways(prevCard, currCard);
+            shakeCardSideways(prevCard);
+            shakeCardSideways(currCard);
         }
         moveCounter++;
         updateMoveDisplay();
     } else { // fix bug related to clicking over 2 cards in a row and it still showing up
-        shakeCardsSideways(currCard);
+        shakeCardSideways(currCard);
     }
 };
 
-// remove cards from openCards and remove the cards from being visible and shake cards up/down
-var shakeCardsUpDown = function(prevCard, currCard) {
-    prevCard.addClass('shake_effect_updown');
+// remove most recent card from openCards and remove given card from being visible and shake card up/down
+var shakeCardUpDown = function(card) {
+    card.addClass('shake_effect_updown');
     setTimeout(function() {
-        prevCard.removeClass('open show shake_effect_updown')
+        card.removeClass('open show shake_effect_updown')
     }, 800);
-
-    currCard.addClass('shake_effect_updown');
-    setTimeout(function() {
-        currCard.removeClass('open show shake_effect_updown')
-    }, 800);
-    openCards.pop();
     openCards.pop();
 };
 
-// remove cards from openCards and remove the cards from being visible and shake cards sideways, allows one card to be passed to account for user clicking too many cards
-var shakeCardsSideways = function(prevCard, currCard = '') {
-    prevCard.addClass('shake_effect_sideways wrong');
+// remove most recent card from openCards and remove given card from being visible and shake card sideways
+var shakeCardSideways = function(card) {
+    card.addClass('shake_effect_sideways wrong');
     setTimeout(function() {
-        prevCard.removeClass('open show shake_effect_sideways wrong')
+        card.removeClass('open show shake_effect_sideways wrong')
     }, 800);
-
-    currCard.addClass('shake_effect_sideways wrong');
-    setTimeout(function() {
-        currCard.removeClass('open show shake_effect_sideways wrong')
-    }, 800);
-    openCards.pop();
     openCards.pop();
 };
 
