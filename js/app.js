@@ -92,7 +92,7 @@ var shakeCardUpDown = function(card) {
     openCards.pop();
 };
 
-// remove most recent card from openCards and remove given card from being visible and shake card sideways
+// remove most recent card from openCards and remove given card from being visible and shake card sideways with additional wrong class to change color before flipping
 var shakeCardSideways = function(card) {
     card.addClass('shake_effect_sideways wrong');
     setTimeout(function() {
@@ -148,6 +148,9 @@ var timer = function() {
         if (time.seconds === 60) {
             time.seconds = 0;
             time.min++;
+        }
+        if (time.seconds < 10) {
+            time.seconds = `0${time.seconds}`;
         }
         let timeTotal = `${time.minutes}:${time.seconds}`;
         $timeClass.text(timeTotal);
