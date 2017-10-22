@@ -8,7 +8,8 @@ const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 const $restartClass = $('.restart');
 const $starsClass = $('.stars');
-const $congratsClass = $('#congrats');
+const $congratsClass = $('.congrats');
+const $timeClass = $('.time');
 
 // variables that need to be reset at each game
 let openCards = [];
@@ -115,17 +116,6 @@ var updateMoveDisplay = function() {
     $moveClass.text(moveCounter);
 };
 
-// resets the game and puts all the cards back down
-var reset = function() {
-    shuffledDeck = shuffle(sortedDeck);
-    placeCards(shuffledDeck);
-    openCards = [];
-    moveCounter = 0;
-    matches = 0;
-    updateMoveDisplay();
-    displayStars($starsClass);
-};
-
 // generate html code for displaying stars
 var generateStars = function() {
     let starHTML = '';
@@ -155,9 +145,47 @@ var allMatched = function() {
     }
 };
 
+// sets the current time spent in the game
+let timeInterval;
+var timer = function() {
+    let time = {
+        minutes: 0,
+        seconds: 0
+    };
+
+    let setTime = function() {
+        time.seconds++;
+        if (time.seconds === 60) {
+            time.seconds = 0;
+            time.min++;
+        }
+        let timeTotal = `${time.minutes}:${time.seconds}`;
+        $timeClass.text(timeTotal);
+    };
+    timeInterval = window.setInterval(setTime, 1000);
+};
+
+var stopTimer = function() {
+    window.clearInterval(timeInterval);
+};
+
+// resets the game and puts all the cards back down
+var reset = function() {
+    shuffledDeck = shuffle(sortedDeck);
+    placeCards(shuffledDeck);
+    openCards = [];
+    moveCounter = 0;
+    matches = 0;
+    updateMoveDisplay();
+    displayStars($starsClass);
+    stopTimer();
+    timer();
+};
+
 var startGame = function() {
     displayStars();
     placeCards(shuffledDeck);
+    timer();
 
     $placedDeck.on('click', 'li', function() {
         let $currentCard = $(this);
