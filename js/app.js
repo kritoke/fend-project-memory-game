@@ -125,16 +125,6 @@ var displayStars = function() {
     $starsClass.html(generateStars());
 };
 
-// see if all cards are matched, display modal with congrats info
-var allMatched = function() {
-    if (matches === 8) {
-        $congratsClass.modal({
-            fadeDuration: 250,
-            fadeDelay: 0.80
-        });
-    }
-};
-
 // sets the current time spent in the game
 let timeInterval;
 var timer = function() {
@@ -160,6 +150,17 @@ var timer = function() {
 
 var stopTimer = function() {
     window.clearInterval(timeInterval);
+};
+
+// see if all cards are matched, display modal with congrats info
+var allMatched = function() {
+    if (matches === 8) {
+        stopTimer();
+        $congratsClass.modal({
+            fadeDuration: 250,
+            fadeDelay: 0.80
+        });
+    }
 };
 
 // resets the game and puts all the cards back down
