@@ -59,6 +59,8 @@ var flipCard = function(card) {
             setTimeout(function() {
                 matchCards(openCards[0], card);
             }, 600);
+        } else {
+            shakeCardSideways(card);
         }
     }
 };
