@@ -2,7 +2,13 @@
 
 ## Game Instructions
 
-This is a typical memory/concentration game.  The user has to click two cards and if they are matched, they will change color and stay turned over.  If the user's cards do not match, they will flip back over.  Once all the cards are matched, then the user has won the game and can play another round if they want to play again.
+* This is a typical memory/concentration game.  
+
+* The user has to click two cards and if they are matched, they will change color and stay turned over.  
+
+* If the user's cards do not match, they will flip back over.  
+
+* Once all the cards are matched, then the user has won the game and can play another round if they want to play again.
 
 ## Project Info
 
