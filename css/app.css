@@ -83,6 +83,12 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.wrong {
+    cursor: default;
+    background: #CD0000;
+    font-size: 33px;
+}
+
 
 /*
  * Styles for the Score Panel
@@ -115,4 +121,55 @@ h1 {
 
 .hidden {
     display: none;
+}
+
+
+/* Used tutorial from http://talkerscode.com/webtricks/login-form-with-shake-animation-effect-using-jquery-and-css3.php */
+
+.shake_effect_sideways {
+    animation: shake-sideways 1s;
+}
+
+@keyframes shake-sideways {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+.shake_effect_updown {
+    animation: shake-updown 1s;
+}
+
+@keyframes shake-updown {
+    10%,
+    90% {
+        transform: translate3d(0, -1px, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(0, 2px, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(0, -4px, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(0, 4px, 0);
+    }
 }

@@ -74,23 +74,45 @@ var matchCards = function(prevCard, currCard) {
         if (prevCard.children().attr('class') === currCard.children().attr('class')) {
             currCard.addClass('match');
             prevCard.addClass('match');
-            unshowCards(prevCard, currCard);
+            shakeCardsUpDown(prevCard, currCard);
             matches++;
             allMatched();
         } else {
-            unshowCards(prevCard, currCard);
+            shakeCardsSideways(prevCard, currCard);
         }
         moveCounter++;
         updateMoveDisplay();
     } else { // fix bug related to clicking over 2 cards in a row and it still showing up
-        currCard.removeClass('open show');
+        shakeCardsSideways(currCard);
     }
 };
 
-// remove cards from openCards and remove the cards from being visible
-var unshowCards = function(prevCard, currCard) {
-    prevCard.removeClass('open show');
-    currCard.removeClass('open show');
+// remove cards from openCards and remove the cards from being visible and shake cards up/down
+var shakeCardsUpDown = function(prevCard, currCard) {
+    prevCard.addClass('shake_effect_updown');
+    setTimeout(function() {
+        prevCard.removeClass('open show shake_effect_updown')
+    }, 800);
+
+    currCard.addClass('shake_effect_updown');
+    setTimeout(function() {
+        currCard.removeClass('open show shake_effect_updown')
+    }, 800);
+    openCards.pop();
+    openCards.pop();
+};
+
+// remove cards from openCards and remove the cards from being visible and shake cards sideways, allowing one card to be passed
+var shakeCardsSideways = function(prevCard, currCard = '') {
+    prevCard.addClass('shake_effect_sideways wrong');
+    setTimeout(function() {
+        prevCard.removeClass('open show shake_effect_sideways wrong')
+    }, 800);
+
+    currCard.addClass('shake_effect_sideways wrong');
+    setTimeout(function() {
+        currCard.removeClass('open show shake_effect_sideways wrong')
+    }, 800);
     openCards.pop();
     openCards.pop();
 };
@@ -125,6 +147,7 @@ var generateStars = function() {
     return starHTML;
 };
 
+// replace html for the score panel
 var displayStars = function() {
     $starsClass.html(generateStars());
 };
