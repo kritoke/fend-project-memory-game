@@ -15,13 +15,6 @@ let openCards = [];
 let moveCounter = 0;
 let matches = 0;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 var shuffle = function(array) {
     var currentIndex = array.length,
@@ -102,7 +95,7 @@ var shakeCardsUpDown = function(prevCard, currCard) {
     openCards.pop();
 };
 
-// remove cards from openCards and remove the cards from being visible and shake cards sideways, allowing one card to be passed
+// remove cards from openCards and remove the cards from being visible and shake cards sideways, allows one card to be passed to account for user clicking too many cards
 var shakeCardsSideways = function(prevCard, currCard = '') {
     prevCard.addClass('shake_effect_sideways wrong');
     setTimeout(function() {
@@ -152,7 +145,7 @@ var displayStars = function() {
     $starsClass.html(generateStars());
 };
 
-// see if all cards are matched
+// see if all cards are matched, display modal with congrats info
 var allMatched = function() {
     if (matches === 8) {
         $congratsClass.modal({
@@ -174,18 +167,6 @@ var startGame = function() {
     $restartClass.on('click', 'i', function() {
         reset();
     });
-    $(document).on('.play-again', 'click', function() { reset(); });
 };
 
 startGame();
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */

@@ -1,20 +1,17 @@
 # Memory Game Project
 
-## Table of Contents
+## Game Instructions
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This is a typical memory/concentration game.  The user has to click two cards and if they are matched, they will change color and stay turned over.  If the user's cards do not match, they will flip back over.  Once all the cards are matched, then the user has won the game and can play another round if they want to play again.
 
-## Instructions
+## Project Info
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The project contains the following features:
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+1. Shuffles a set of cards in an array and renders them to the screen hidden.
+2. Implements a star rating based on how many moves you need to take to finish the game.
+3. Allows you to reset by click a reload icon at any time.
+4. Uses animations to highlight whether you matched correctly two cards, turns red as well if not matched.
+5. Implements some checks to handle whether you click more than two cards in a row to prevent certain bugs that arise from that.
+6. Tracks how many moves (each set of two cards flipped over) are made in the game.
+7. Opens a congrats dialog whenever all cards are finally matched and allows you to start a new game in the same dialog.
