@@ -57,7 +57,7 @@ var flipCard = function(card) {
         } else {
             setTimeout(function() {
                 matchCards(openCards[0], card);
-            }, 800);
+            }, 600);
         }
     }
 };
@@ -88,7 +88,7 @@ var shakeCardUpDown = function(card) {
     card.addClass('shake_effect_updown');
     setTimeout(function() {
         card.removeClass('open show shake_effect_updown')
-    }, 800);
+    }, 600);
     openCards.pop();
 };
 
@@ -97,7 +97,7 @@ var shakeCardSideways = function(card) {
     card.addClass('shake_effect_sideways wrong');
     setTimeout(function() {
         card.removeClass('open show shake_effect_sideways wrong')
-    }, 800);
+    }, 600);
     openCards.pop();
 };
 
