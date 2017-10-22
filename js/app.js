@@ -137,7 +137,7 @@ var timer = function() {
         time.seconds++;
         if (time.seconds === 60) {
             time.seconds = 0;
-            time.min++;
+            time.minutes++;
         }
         if (time.seconds < 10) {
             time.seconds = `0${time.seconds}`;
