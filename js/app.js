@@ -127,15 +127,11 @@ var generateStars = function() {
 
 var displayStars = function() {
     $starsClass.html(generateStars());
-}
+};
 
 // see if all cards are matched
 var allMatched = function() {
     if (matches === 8) {
-        $congratsClass.html(`<p>Congrats for Winning!</p>
-        Your Score: ${generateStars()}
-        <p>Moves: ${moveCounter}</p>
-        `);
         $congratsClass.modal({
             fadeDuration: 250,
             fadeDelay: 0.80
@@ -155,6 +151,7 @@ var startGame = function() {
     $restartClass.on('click', 'i', function() {
         reset();
     });
+    $(document).on('.play-again', 'click', function() { reset(); });
 };
 
 startGame();
