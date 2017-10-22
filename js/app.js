@@ -8,9 +8,9 @@ const $placedDeck = $('.deck');
 const $moveClass = $('.moves');
 const $restartClass = $('.restart');
 const $starsClass = $('.stars');
+const $congratsClass = $('#congrats');
 
 // variables that need to be reset at each game
-let shuffledDeck = shuffle(sortedDeck);
 let openCards = [];
 let moveCounter = 0;
 let matches = 0;
@@ -37,6 +37,9 @@ var shuffle = function(array) {
 
     return array;
 };
+
+// shuffle the deck
+let shuffledDeck = shuffle(sortedDeck);
 
 // put cards on the "table"
 var placeCards = function(cards) {
@@ -97,13 +100,6 @@ var updateMoveDisplay = function() {
     $moveClass.text(moveCounter);
 };
 
-// see if all cards are matched
-var allMatched = function() {
-    if (matches === 8) {
-        $('.congrats').removeClass('hidden');
-    }
-};
-
 // resets the game and puts all the cards back down
 var reset = function() {
     shuffledDeck = shuffle(sortedDeck);
@@ -112,18 +108,38 @@ var reset = function() {
     moveCounter = 0;
     matches = 0;
     updateMoveDisplay();
-    displayStars();
+    displayStars($starsClass);
 };
 
-// sets the stars on the screen based on move counts
-var displayStars = function() {
-    let starHTML = '<li><i class="fa fa-star"></i></li>';
+// generate html code for displaying stars
+var generateStars = function() {
+    let starHTML = '';
+    let oneStarHTML = '<li><i class="fa fa-star"></i></li>';
     if (moveCounter >= 15) {
-        $starsClass.html(starHTML);
+        starHTML = oneStarHTML;
     } else if (moveCounter === 9) {
-        $starsClass.html(starHTML.repeat(2));
+        starHTML = oneStarHTML.repeat(2);
     } else if (moveCounter <= 8) {
-        $starsClass.html(starHTML.repeat(3));
+        starHTML = oneStarHTML.repeat(3);
+    }
+    return starHTML;
+};
+
+var displayStars = function() {
+    $starsClass.html(generateStars());
+}
+
+// see if all cards are matched
+var allMatched = function() {
+    if (matches === 8) {
+        $congratsClass.html(`<p>Congrats for Winning!</p>
+        Your Score: ${generateStars()}
+        <p>Moves: ${moveCounter}</p>
+        `);
+        $congratsClass.modal({
+            fadeDuration: 250,
+            fadeDelay: 0.80
+        });
     }
 };
 
