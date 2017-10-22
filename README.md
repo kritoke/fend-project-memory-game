@@ -15,3 +15,7 @@ The project contains the following features:
 5. Implements some checks to handle whether you click more than two cards in a row to prevent certain bugs that arise from that.
 6. Tracks how many moves (each set of two cards flipped over) are made in the game.
 7. Opens a congrats dialog whenever all cards are finally matched and allows you to start a new game in the same dialog.
+
+## Dependencies
+
+This program requires jQuery and a modern web browser that supports CSS3 and jQuery.  It also incorporates the jquery-modal plugin for the modal dialog.
